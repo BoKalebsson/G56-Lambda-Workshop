@@ -99,7 +99,9 @@ public class Exercises {
      */
     public static void exercise6(String message) {
         System.out.println(message);
-        //Write your code here
+
+        // Filter out the correct person, and then specify how the formated printout should look like:
+        System.out.println(storage.findManyAndMapEachToString(p -> p.getGender() == Gender.MALE && p.getFirstName().startsWith("E"), p -> "Name: " + p.getFirstName() + " " + p.getLastName() + "\n"));
 
         System.out.println("----------------------");
     }
