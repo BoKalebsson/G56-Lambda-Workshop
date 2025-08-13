@@ -18,11 +18,12 @@ public class Exercises {
      */
     public static void exercise1(String message) {
         System.out.println(message);
+
         // Add all persons, matching a certain filter, to a list:
         List<Person> persons = storage.findMany((person) -> person.getFirstName().equals("Erik"));
 
         // Print out each person from the list:
-        persons.forEach(person -> System.out.println(person));
+        persons.forEach(System.out::println);
 
         System.out.println("----------------------");
     }
@@ -31,7 +32,16 @@ public class Exercises {
      * 2.	TODO: Find all females in the collection using findMany().
      */
     public static void exercise2(String message) {
-        //Write your code here
+        System.out.println(message);
+
+        // Add all persons, matching a certain gender, to a list:
+        List<Person> persons = storage.findMany((person) -> person.getGender().equals(Gender.FEMALE));
+
+        // Finding out how many of certain gender:
+        System.out.println("Number of filtered gender: " + persons.size());
+
+        // Print out each person from the list:
+        persons.forEach(System.out::println);
 
         System.out.println("----------------------");
     }
