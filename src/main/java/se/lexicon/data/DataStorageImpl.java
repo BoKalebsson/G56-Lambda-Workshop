@@ -90,7 +90,6 @@ public class DataStorageImpl implements DataStorage {
     }
 
     @Override
-    @Override
     public List<Person> findAndSort(Predicate<Person> filter, Comparator<Person> comparator) {
         List<Person> filteredPersons = findMany(filter); // Reuse our filter-logic.
         filteredPersons.sort(comparator); // Sort with provided comparator
