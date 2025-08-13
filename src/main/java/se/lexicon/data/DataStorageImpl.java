@@ -36,35 +36,44 @@ public class DataStorageImpl implements DataStorage {
 
     @Override
     public List<Person> findMany(Predicate<Person> filter) {
-        List<Person> result = new ArrayList<>(); // Creating a list to store filtered Person objects
-        for (Person person : personList) { // Iterating over each Person object in personList
-            if (filter.test(person)) { // Testing if the Person object satisfies the filter predicate
-                result.add(person); // Adding the Person object to the result list if it satisfies the predicate
+        List<Person> result = new ArrayList<>(); // Creating a list to store filtered Person objects.
+        for (Person person : personList) { // Iterating over each Person object in personList.
+            if (filter.test(person)) { // Testing if the Person object satisfies the filter predicate.
+                result.add(person); // Adding the Person object to the result list if it satisfies the predicate.
             }
         }
-        return result; // Returning the list of filtered Person objects
+        return result; // Returning the list of filtered Person objects.
     }
 
     @Override
     public Person findOne(Predicate<Person> filter) {
-        for (Person person : personList) {
-            if (filter.test(person)){
-                return person;
+        for (Person person : personList) { // Iterating over each Person object in personList.
+            if (filter.test(person)){ // Testing if the Person object satisfies the filter predicate.
+                return person; // Return the Person object if it satisfies the predicate.
             }
         }
-        return null;
+        return null; // Noone found matching the predicate.
     }
 
     @Override
     public String findOneAndMapToString(Predicate<Person> filter, Function<Person, String> personToString) {
-        // TODO: needs completion
-        return null;
+        for (Person person : personList) { // Iterating over each Person object in personList.
+            if (filter.test(person)){ // Testing if the Person object satisfies the filter predicate.
+                return personToString.apply(person); // Return the Person object using personToString() if it satisfies the predicate.
+            }
+        }
+        return null; // Noone found matching the predicate.
     }
 
     @Override
     public List<String> findManyAndMapEachToString(Predicate<Person> filter, Function<Person, String> personToString) {
-        // TODO: needs completion
-        return null;
+        List<String> result = new ArrayList<>(); // Creating a list to store filtered Person objects as Strings.
+        for (Person person : personList) { // Iterating over each Person object in personList.
+            if (filter.test(person)){ // Testing if the Person object satisfies the filter predicate.
+                result.add(personToString.apply(person)); // Apply personToString on Person objects and add to the String list.
+            }
+        }
+        return result; // Returning the string list of filtered Person objects.
     }
 
     @Override
