@@ -68,10 +68,8 @@ public class DataStorageImpl implements DataStorage {
     @Override
     public List<String> findManyAndMapEachToString(Predicate<Person> filter, Function<Person, String> personToString) {
         List<String> result = new ArrayList<>(); // Creating a list to store filtered Person objects as Strings.
-        for (Person person : personList) { // Iterating over each Person object in personList.
-            if (filter.test(person)){ // Testing if the Person object satisfies the filter predicate.
-                result.add(personToString.apply(person)); // Apply personToString on Person objects and add to the String list.
-            }
+        for (Person person : findMany(filter)) { // Using findMany() to iterate through the list of persons with a filter.
+            result.add(personToString.apply(person)); // Apply personToString on Person objects and add to the String list.
         }
         return result; // Returning the string list of filtered Person objects.
     }
