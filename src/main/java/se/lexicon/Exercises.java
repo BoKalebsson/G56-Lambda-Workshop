@@ -112,7 +112,21 @@ public class Exercises {
      */
     public static void exercise7(String message) {
         System.out.println(message);
-        //Write your code here
+
+        // Filter all the persons under the age of 10:
+        List<String> children = storage.findManyAndMapEachToString(
+                p -> { // Lambda-expressions that filters:
+                    int age = Period.between(p.getBirthDate(), LocalDate.now()).getYears();
+                    return age < 10;
+                },
+                p -> { // Lambda-expressions that formats the string output:
+                    int age = Period.between(p.getBirthDate(), LocalDate.now()).getYears();
+                    return p.getFirstName() + " " + p.getLastName() + " " + age + " years";
+                }
+        );
+
+        // Print out each person:
+        children.forEach(System.out::println);
 
         System.out.println("----------------------");
     }
