@@ -22,6 +22,9 @@ public class Exercises {
         // Add all persons, matching a certain filter, to a list:
         List<Person> persons = storage.findMany((person) -> person.getFirstName().equals("Erik"));
 
+        // Finding out how many person with the filtered firstname:
+        System.out.println("Number of persons with filtered firstname: " + persons.size());
+
         // Print out each person from the list:
         persons.forEach(System.out::println);
 
@@ -38,7 +41,7 @@ public class Exercises {
         List<Person> persons = storage.findMany((person) -> person.getGender().equals(Gender.FEMALE));
 
         // Finding out how many of certain gender:
-        System.out.println("Number of filtered gender: " + persons.size());
+        System.out.println("Number of persons with filtered gender: " + persons.size());
 
         // Print out each person from the list:
         persons.forEach(System.out::println);
@@ -51,7 +54,12 @@ public class Exercises {
      */
     public static void exercise3(String message) {
         System.out.println(message);
-        //Write your code here
+
+        // Add all persons, that are born after a certain date, to a list:
+        List<Person> persons = storage.findMany((person) -> !person.getBirthDate().isBefore(LocalDate.of(2000,1,1)));
+
+        // Print out each person from the list:
+        persons.forEach(System.out::println);
 
         System.out.println("----------------------");
     }
