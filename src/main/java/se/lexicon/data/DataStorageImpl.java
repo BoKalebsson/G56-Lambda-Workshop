@@ -93,14 +93,10 @@ public class DataStorageImpl implements DataStorage {
     }
 
     @Override
+    @Override
     public List<Person> findAndSort(Predicate<Person> filter, Comparator<Person> comparator) {
-        List<Person> filteredPersons = new ArrayList<>(); // Make a copy of the original list of Persons.
-        for (Person person : personList) { // Iterating over each Person object in personList.
-            if (filter.test(person)) { // Testing if the Person object satisfies the filter predicate.
-                filteredPersons.add(person); // Adding the Person object to the filteredPersons list if it satisfies the predicate.
-            }
-        filteredPersons.sort(comparator); // Sort the filtered list with the provided comparator.
-
-        return filteredPersons;
+        List<Person> filteredPersons = findMany(filter); // Reuse our filter-logic.
+        filteredPersons.sort(comparator); // Sort with provided comparator
+        return filteredPersons; // Return the filtered list.
     }
 }
