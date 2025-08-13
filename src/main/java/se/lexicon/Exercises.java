@@ -87,7 +87,9 @@ public class Exercises {
      */
     public static void exercise5(String message) {
         System.out.println(message);
-        //Write your code here
+
+        // Filter out the correct person, and then specify how the formated printout should look like:
+        System.out.println(storage.findOneAndMapToString(p -> p.getId() == 456, p -> "Name: " + p.getFirstName() + " " + p.getLastName() + " born " + p.getBirthDate() + "." ));
 
         System.out.println("----------------------");
     }
