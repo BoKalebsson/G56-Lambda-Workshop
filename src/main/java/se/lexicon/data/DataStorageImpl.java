@@ -78,7 +78,11 @@ public class DataStorageImpl implements DataStorage {
 
     @Override
     public void findAndDo(Predicate<Person> filter, Consumer<Person> consumer) {
-        // TODO: needs completion
+        for (Person person : personList) { // Iterating over each Person object in personList.
+            if (filter.test(person)){ // Testing if the Person object satisfies the filter predicate.
+                consumer.accept(person); // Apply an action to the person.
+            }
+        }
     }
 
     @Override
