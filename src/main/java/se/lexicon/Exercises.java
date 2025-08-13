@@ -7,6 +7,7 @@ import se.lexicon.model.Person;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Comparator;
+import java.util.List;
 
 public class Exercises {
 
@@ -17,7 +18,11 @@ public class Exercises {
      */
     public static void exercise1(String message) {
         System.out.println(message);
-        //Write your code here
+        // Add all persons, matching a certain filter, to a list:
+        List<Person> persons = storage.findMany((person) -> person.getFirstName().equals("Erik"));
+
+        // Print out each person from the list:
+        persons.forEach(person -> System.out.println(person));
 
         System.out.println("----------------------");
     }
