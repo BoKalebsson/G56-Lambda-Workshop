@@ -88,8 +88,12 @@ public class Exercises {
     public static void exercise5(String message) {
         System.out.println(message);
 
-        // Filter out the correct person, and then specify how the formated printout should look like:
-        System.out.println(storage.findOneAndMapToString(p -> p.getId() == 456, p -> "Name: " + p.getFirstName() + " " + p.getLastName() + " born " + p.getBirthDate() + "." ));
+        System.out.println(storage.findOneAndMapToString(
+
+                p -> p.getId() == 456,
+
+                p -> "Name: " + p.getFirstName() + " " + p.getLastName() + " born " + p.getBirthDate() + "." )
+        );
 
         System.out.println("----------------------");
     }
@@ -100,8 +104,12 @@ public class Exercises {
     public static void exercise6(String message) {
         System.out.println(message);
 
-        // Filter out the correct person, and then specify how the formated printout should look like:
-        System.out.println(storage.findManyAndMapEachToString(p -> p.getGender() == Gender.MALE && p.getFirstName().startsWith("E"), p -> "Name: " + p.getFirstName() + " " + p.getLastName() + "\n"));
+        System.out.println(storage.findManyAndMapEachToString(
+
+                p -> p.getGender() == Gender.MALE && p.getFirstName().startsWith("E"),
+
+                p -> "Name: " + p.getFirstName() + " " + p.getLastName() + "\n")
+        );
 
         System.out.println("----------------------");
     }
@@ -115,17 +123,12 @@ public class Exercises {
 
         // Filter all the persons under the age of 10:
         List<String> children = storage.findManyAndMapEachToString(
-                p -> { // Lambda-expressions that filters:
-                    int age = Period.between(p.getBirthDate(), LocalDate.now()).getYears();
-                    return age < 10;
-                },
-                p -> { // Lambda-expressions that formats the string output:
-                    int age = Period.between(p.getBirthDate(), LocalDate.now()).getYears();
-                    return p.getFirstName() + " " + p.getLastName() + " " + age + " years";
-                }
+
+                p -> Period.between(p.getBirthDate(), LocalDate.now()).getYears() < 10,
+
+                p -> p.getFirstName() + " " + p.getLastName() + " " + Period.between(p.getBirthDate(), LocalDate.now()).getYears() + " years."
         );
 
-        // Print out each person:
         children.forEach(System.out::println);
 
         System.out.println("----------------------");
