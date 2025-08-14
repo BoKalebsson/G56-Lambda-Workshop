@@ -19,14 +19,11 @@ public class Exercises {
     public static void exercise1(String message) {
         System.out.println(message);
 
-        // Add all persons, matching a certain filter, to a list:
-        List<Person> persons = storage.findMany((p) -> p.getFirstName().equals("Erik"));
+        storage.findMany(
 
-        // Finding out how many person with the filtered firstname:
-        System.out.println("Number of persons with filtered firstname: " + persons.size());
+                (p) -> p.getFirstName().equals("Erik")
 
-        // Print out each person from the list:
-        persons.forEach(System.out::println);
+        ).forEach(System.out::println);
 
         System.out.println("----------------------");
     }
@@ -37,14 +34,11 @@ public class Exercises {
     public static void exercise2(String message) {
         System.out.println(message);
 
-        // Add all persons, matching a certain gender, to a list:
-        List<Person> persons = storage.findMany((p) -> p.getGender().equals(Gender.FEMALE));
+        storage.findMany(
 
-        // Finding out how many of certain gender:
-        System.out.println("Number of persons with filtered gender: " + persons.size());
+                (p) -> p.getGender().equals(Gender.FEMALE)
 
-        // Print out each person from the list:
-        persons.forEach(System.out::println);
+        ).forEach(System.out::println);
 
         System.out.println("----------------------");
     }
@@ -55,14 +49,11 @@ public class Exercises {
     public static void exercise3(String message) {
         System.out.println(message);
 
-        // Add all persons, that are born after a certain date, to a list:
-        List<Person> persons = storage.findMany((p) -> !p.getBirthDate().isBefore(LocalDate.of(2000,1,1)));
+        storage.findMany(
 
-        // Finding out how many person with the filtered birthdate:
-        System.out.println("Number of persons with filtered birthdate: " + persons.size());
+                (p) -> !p.getBirthDate().isBefore(LocalDate.of(2000,1,1))
 
-        // Print out each person from the list:
-        persons.forEach(System.out::println);
+        ).forEach(System.out::println);
 
         System.out.println("----------------------");
     }
@@ -72,11 +63,11 @@ public class Exercises {
      */
     public static void exercise4(String message) {
         System.out.println(message);
-        // Find the person with id 123:
-        Person person = storage.findOne(p -> p.getId() == 123);
 
-        // Print the found person (null if not found):
-        System.out.println(person);
+        System.out.println(
+
+                storage.findOne(p -> p.getId() == 123
+        ));
 
         System.out.println("----------------------");
     }
@@ -104,12 +95,13 @@ public class Exercises {
     public static void exercise6(String message) {
         System.out.println(message);
 
-        System.out.println(storage.findManyAndMapEachToString(
+        storage.findManyAndMapEachToString(
 
                 p -> p.getGender() == Gender.MALE && p.getFirstName().startsWith("E"),
 
-                p -> "Name: " + p.getFirstName() + " " + p.getLastName() + "\n")
-        );
+                p -> "Name: " + p.getFirstName() + " " + p.getLastName()
+
+        ).forEach(System.out::println);
 
         System.out.println("----------------------");
     }
@@ -121,15 +113,13 @@ public class Exercises {
     public static void exercise7(String message) {
         System.out.println(message);
 
-        // Filter all the persons under the age of 10:
-        List<String> children = storage.findManyAndMapEachToString(
+        storage.findManyAndMapEachToString(
 
                 p -> Period.between(p.getBirthDate(), LocalDate.now()).getYears() < 10,
 
                 p -> p.getFirstName() + " " + p.getLastName() + " " + Period.between(p.getBirthDate(), LocalDate.now()).getYears() + " years."
-        );
 
-        children.forEach(System.out::println);
+        ).forEach(System.out::println);
 
         System.out.println("----------------------");
     }
