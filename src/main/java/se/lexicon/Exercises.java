@@ -150,7 +150,8 @@ public class Exercises {
      */
     public static void exercise9(String message) {
         System.out.println(message);
-        //Write your code here
+
+        storage.findAndDo(p -> p.getLastName().contains(p.getFirstName()), p -> System.out.println(p)  );
 
         System.out.println("----------------------");
     }
