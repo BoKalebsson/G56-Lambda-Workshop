@@ -178,7 +178,13 @@ public class Exercises {
      */
     public static void exercise11(String message) {
         System.out.println(message);
-        //Write your code here
+        List<Person> filteredAndSortedPersons = storage.findAndSort(
+
+                p -> p.getFirstName().startsWith("A"),
+
+                Comparator.comparing(Person::getBirthDate));
+
+        filteredAndSortedPersons.forEach(System.out::println);
 
         System.out.println("----------------------");
     }
