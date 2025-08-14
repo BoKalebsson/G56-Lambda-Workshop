@@ -139,7 +139,8 @@ public class Exercises {
      */
     public static void exercise8(String message) {
         System.out.println(message);
-        //Write your code here
+
+        storage.findAndDo(p -> p.getFirstName().equals("Ulf"), p -> System.out.println(p) );
 
         System.out.println("----------------------");
     }
