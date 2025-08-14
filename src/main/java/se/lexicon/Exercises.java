@@ -178,13 +178,14 @@ public class Exercises {
      */
     public static void exercise11(String message) {
         System.out.println(message);
-        List<Person> filteredAndSortedPersons = storage.findAndSort(
+
+        storage.findAndSort(
 
                 p -> p.getFirstName().startsWith("A"),
 
-                Comparator.comparing(Person::getBirthDate));
+                Comparator.comparing(Person::getBirthDate)
 
-        filteredAndSortedPersons.forEach(System.out::println);
+        ).forEach(System.out::println);
 
         System.out.println("----------------------");
     }
@@ -194,7 +195,14 @@ public class Exercises {
      */
     public static void exercise12(String message) {
         System.out.println(message);
-        //Write your code here
+
+        storage.findAndSort(
+
+                p -> p.getBirthDate().isBefore(LocalDate.of(1950,1,1)),
+
+                Comparator.comparing(Person::getBirthDate).reversed()
+
+        ).forEach(System.out::println);
 
         System.out.println("----------------------");
     }
