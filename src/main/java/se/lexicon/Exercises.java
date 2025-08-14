@@ -202,7 +202,16 @@ public class Exercises {
      */
     public static void exercise13(String message) {
         System.out.println(message);
-        //Write your code here
+
+        storage.findAndSort(
+
+                Comparator.comparing(Person::getLastName).
+
+                        thenComparing(Person::getFirstName).
+
+                        thenComparing(Person::getBirthDate)
+
+        ).forEach(System.out::println);
 
         System.out.println("----------------------");
     }
