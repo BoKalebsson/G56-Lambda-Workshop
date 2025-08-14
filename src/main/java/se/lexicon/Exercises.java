@@ -161,7 +161,14 @@ public class Exercises {
      */
     public static void exercise10(String message) {
         System.out.println(message);
-        //Write your code here
+
+        storage.findAndDo(
+
+            p -> p.getFirstName().equalsIgnoreCase(new StringBuilder(p.getFirstName()).reverse().toString()),
+
+            p -> System.out.println(p.getFirstName() + " " + p.getLastName())
+
+        );
 
         System.out.println("----------------------");
     }
